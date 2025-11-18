@@ -1,0 +1,11 @@
+query GetUsuario($email: String!) {
+  getTbUsuarios(email: $email) {
+    email
+    nome
+    cargo
+    cadastro_realizado
+    conta_ativa
+    createdAt
+    updatedAt
+  }
+}

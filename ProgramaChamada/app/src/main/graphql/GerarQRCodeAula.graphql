@@ -1,0 +1,3 @@
+mutation GerarQRCodeAula($aulaId: String!) {
+  gerarQRCodeAula(aulaId: $aulaId)
+}

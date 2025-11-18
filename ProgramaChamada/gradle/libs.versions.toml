@@ -9,6 +9,8 @@ lifecycleRuntimeKtx = "2.6.1"
 activityCompose = "1.8.0"
 navigationCompose = "2.7.7"
 compose-bom = "2024.05.00"
+amplify = "2.14.11"
+apollo = "4.0.0"
 
 
 [libraries]
@@ -29,10 +31,16 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+amplify-core = { group = "com.amplifyframework", name = "core", version.ref = "amplify" }
+amplify-aws-auth-cognito = { group = "com.amplifyframework", name = "aws-auth-cognito", version.ref = "amplify" }
+amplify-aws-api = { group = "com.amplifyframework", name = "aws-api", version.ref = "amplify" }
+apollo-runtime = { group = "com.apollographql.apollo", name = "apollo-runtime", version.ref = "apollo" }
+apollo-api = { group = "com.apollographql.apollo", name = "apollo-api", version.ref = "apollo" }
 
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+apollo = { id = "com.apollographql.apollo", version.ref = "apollo" }
 

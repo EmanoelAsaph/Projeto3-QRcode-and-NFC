@@ -1,0 +1,12 @@
+mutation CreateTurma($input: CreateTbTurmasInput!) {
+  createTbTurmas(input: $input) {
+    id
+    nome
+    descricao
+    periodo
+    professorEmail
+    turma_ativa
+    createdAt
+    updatedAt
+  }
+}

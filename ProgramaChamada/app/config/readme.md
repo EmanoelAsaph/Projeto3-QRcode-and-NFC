@@ -1,0 +1,1 @@
+npx @aws-amplify/cli codegen add --apiId vvnr35arhrdxvhzzciccubso7y --region us-east-2
