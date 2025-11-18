@@ -8,6 +8,7 @@ import com.example.programachamada.telas.TelaAdicionarAluno
 import com.example.programachamada.telas.TelaAdicionarTurma
 import com.example.programachamada.telas.TelaAluno
 import com.example.programachamada.telas.TelaDeLogin
+import com.example.programachamada.telas.TelaPerfil
 import com.example.programachamada.telas.TelaProfessor
 
 @Composable
@@ -34,6 +35,9 @@ fun NavegacaoDoApp() {
         }
         composable("tela_adicionar_aluno") {
             TelaAdicionarAluno(controladorDeNavegacao = controladorDeNavegacao)
+        }
+        composable("tela_perfil") {
+            TelaPerfil(controladorDeNavegacao = controladorDeNavegacao)
         }
     }
 }

@@ -1,0 +1,738 @@
+# AWS AppSync Directives
+directive @aws_iam on OBJECT | FIELD_DEFINITION
+directive @aws_cognito_user_pools on OBJECT | FIELD_DEFINITION
+directive @aws_subscribe(mutations: [String]) on FIELD_DEFINITION
+
+# AWS Scalar Types
+scalar AWSDateTime
+scalar AWSURL
+
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type ModelTbAulasConnection @aws_cognito_user_pools @aws_iam {
+  items: [tbAulas]!
+  nextToken: String
+}
+
+type ModelTbJoinTurmasAlunosConnection @aws_cognito_user_pools @aws_iam {
+  items: [tbJoinTurmasAlunos]!
+  nextToken: String
+}
+
+type ModelTbPresencaConnection @aws_cognito_user_pools @aws_iam {
+  items: [tbPresenca]!
+  nextToken: String
+}
+
+type ModelTbTurmasConnection @aws_cognito_user_pools @aws_iam {
+  items: [tbTurmas]!
+  nextToken: String
+}
+
+type ModelTbUsuariosConnection @aws_cognito_user_pools @aws_iam {
+  items: [tbUsuarios]!
+  nextToken: String
+}
+
+type ModeltbAulasConnection @aws_cognito_user_pools @aws_iam {
+  items: [tbAulas]!
+  nextToken: String
+}
+
+type ModeltbJoinTurmasAlunosConnection @aws_cognito_user_pools @aws_iam {
+  items: [tbJoinTurmasAlunos]!
+  nextToken: String
+}
+
+type ModeltbPresencaConnection @aws_cognito_user_pools @aws_iam {
+  items: [tbPresenca]!
+  nextToken: String
+}
+
+type ModeltbTurmasConnection @aws_cognito_user_pools @aws_iam {
+  items: [tbTurmas]!
+  nextToken: String
+}
+
+type Mutation @aws_iam {
+  createTbAulas(condition: ModelTbAulasConditionInput, input: CreateTbAulasInput!): tbAulas @aws_cognito_user_pools @aws_iam
+  createTbJoinTurmasAlunos(condition: ModelTbJoinTurmasAlunosConditionInput, input: CreateTbJoinTurmasAlunosInput!): tbJoinTurmasAlunos @aws_cognito_user_pools @aws_iam
+  createTbPresenca(condition: ModelTbPresencaConditionInput, input: CreateTbPresencaInput!): tbPresenca @aws_cognito_user_pools @aws_iam
+  createTbTurmas(condition: ModelTbTurmasConditionInput, input: CreateTbTurmasInput!): tbTurmas @aws_cognito_user_pools @aws_iam
+  createTbUsuarios(condition: ModelTbUsuariosConditionInput, input: CreateTbUsuariosInput!): tbUsuarios @aws_cognito_user_pools @aws_iam
+  deleteTbAulas(condition: ModelTbAulasConditionInput, input: DeleteTbAulasInput!): tbAulas @aws_cognito_user_pools @aws_iam
+  deleteTbJoinTurmasAlunos(condition: ModelTbJoinTurmasAlunosConditionInput, input: DeleteTbJoinTurmasAlunosInput!): tbJoinTurmasAlunos @aws_cognito_user_pools @aws_iam
+  deleteTbPresenca(condition: ModelTbPresencaConditionInput, input: DeleteTbPresencaInput!): tbPresenca @aws_cognito_user_pools @aws_iam
+  deleteTbTurmas(condition: ModelTbTurmasConditionInput, input: DeleteTbTurmasInput!): tbTurmas @aws_cognito_user_pools @aws_iam
+  deleteTbUsuarios(condition: ModelTbUsuariosConditionInput, input: DeleteTbUsuariosInput!): tbUsuarios @aws_cognito_user_pools @aws_iam
+  gerarQRCodeAula(aulaId: String!): String @aws_cognito_user_pools @aws_iam
+  registrarPresencaQRCode(qrcode: String!): tbPresenca @aws_cognito_user_pools @aws_iam
+  updateTbAulas(condition: ModelTbAulasConditionInput, input: UpdateTbAulasInput!): tbAulas @aws_cognito_user_pools @aws_iam
+  updateTbJoinTurmasAlunos(condition: ModelTbJoinTurmasAlunosConditionInput, input: UpdateTbJoinTurmasAlunosInput!): tbJoinTurmasAlunos @aws_cognito_user_pools @aws_iam
+  updateTbPresenca(condition: ModelTbPresencaConditionInput, input: UpdateTbPresencaInput!): tbPresenca @aws_cognito_user_pools @aws_iam
+  updateTbTurmas(condition: ModelTbTurmasConditionInput, input: UpdateTbTurmasInput!): tbTurmas @aws_cognito_user_pools @aws_iam
+  updateTbUsuarios(condition: ModelTbUsuariosConditionInput, input: UpdateTbUsuariosInput!): tbUsuarios @aws_cognito_user_pools @aws_iam
+}
+
+type Query {
+  getTbAulas(id: ID!): tbAulas @aws_cognito_user_pools @aws_iam
+  getTbJoinTurmasAlunos(id: ID!): tbJoinTurmasAlunos @aws_cognito_user_pools @aws_iam
+  getTbPresenca(id: ID!): tbPresenca @aws_cognito_user_pools @aws_iam
+  getTbTurmas(id: ID!): tbTurmas @aws_cognito_user_pools @aws_iam
+  getTbUsuarios(email: String!): tbUsuarios @aws_cognito_user_pools @aws_iam
+  listTbAulas(filter: ModelTbAulasFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelTbAulasConnection @aws_cognito_user_pools @aws_iam
+  listTbJoinTurmasAlunos(filter: ModelTbJoinTurmasAlunosFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelTbJoinTurmasAlunosConnection @aws_cognito_user_pools @aws_iam
+  listTbPresencas(filter: ModelTbPresencaFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelTbPresencaConnection @aws_cognito_user_pools @aws_iam
+  listTbTurmas(filter: ModelTbTurmasFilterInput, id: ID, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelTbTurmasConnection @aws_cognito_user_pools @aws_iam
+  listTbUsuarios(email: String, filter: ModelTbUsuariosFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelTbUsuariosConnection @aws_cognito_user_pools @aws_iam
+}
+
+type Subscription {
+  onCreateTbAulas(filter: ModelSubscriptionTbAulasFilterInput): tbAulas @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["createTbAulas"])
+  onCreateTbJoinTurmasAlunos(filter: ModelSubscriptionTbJoinTurmasAlunosFilterInput): tbJoinTurmasAlunos @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["createTbJoinTurmasAlunos"])
+  onCreateTbPresenca(filter: ModelSubscriptionTbPresencaFilterInput): tbPresenca @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["createTbPresenca"])
+  onCreateTbTurmas(filter: ModelSubscriptionTbTurmasFilterInput): tbTurmas @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["createTbTurmas"])
+  onCreateTbUsuarios(filter: ModelSubscriptionTbUsuariosFilterInput, owner: String): tbUsuarios @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["createTbUsuarios"])
+  onDeleteTbAulas(filter: ModelSubscriptionTbAulasFilterInput): tbAulas @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["deleteTbAulas"])
+  onDeleteTbJoinTurmasAlunos(filter: ModelSubscriptionTbJoinTurmasAlunosFilterInput): tbJoinTurmasAlunos @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["deleteTbJoinTurmasAlunos"])
+  onDeleteTbPresenca(filter: ModelSubscriptionTbPresencaFilterInput): tbPresenca @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["deleteTbPresenca"])
+  onDeleteTbTurmas(filter: ModelSubscriptionTbTurmasFilterInput): tbTurmas @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["deleteTbTurmas"])
+  onDeleteTbUsuarios(filter: ModelSubscriptionTbUsuariosFilterInput, owner: String): tbUsuarios @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["deleteTbUsuarios"])
+  onUpdateTbAulas(filter: ModelSubscriptionTbAulasFilterInput): tbAulas @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["updateTbAulas"])
+  onUpdateTbJoinTurmasAlunos(filter: ModelSubscriptionTbJoinTurmasAlunosFilterInput): tbJoinTurmasAlunos @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["updateTbJoinTurmasAlunos"])
+  onUpdateTbPresenca(filter: ModelSubscriptionTbPresencaFilterInput): tbPresenca @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["updateTbPresenca"])
+  onUpdateTbTurmas(filter: ModelSubscriptionTbTurmasFilterInput): tbTurmas @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["updateTbTurmas"])
+  onUpdateTbUsuarios(filter: ModelSubscriptionTbUsuariosFilterInput, owner: String): tbUsuarios @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["updateTbUsuarios"])
+}
+
+type tbAulas @aws_cognito_user_pools @aws_iam {
+  conteudo: String
+  createdAt: AWSDateTime!
+  data: AWSDateTime!
+  id: ID!
+  materialUrl: [AWSURL]
+  numeroAula: Int
+  presencas(filter: ModeltbPresencaFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModeltbPresencaConnection
+  qrcode: String
+  status: TbAulasStatus
+  turma: tbTurmas
+  turmaId: String!
+  updatedAt: AWSDateTime!
+}
+
+type tbJoinTurmasAlunos @aws_cognito_user_pools @aws_iam {
+  aluno: tbUsuarios
+  alunoEmail: String!
+  createdAt: AWSDateTime!
+  id: ID!
+  turma: tbTurmas
+  turmaId: String!
+  updatedAt: AWSDateTime!
+}
+
+type tbPresenca @aws_cognito_user_pools @aws_iam {
+  aluno: tbUsuarios
+  alunoEmail: String!
+  aula: tbAulas
+  aulaId: String!
+  createdAt: AWSDateTime!
+  id: ID!
+  justificativa: String
+  owner: String
+  presente: Boolean!
+  statusJustificativa: TbPresencaStatusJustificativa
+  tipo: TbPresencaTipo
+  updatedAt: AWSDateTime!
+}
+
+type tbTurmas @aws_cognito_user_pools @aws_iam {
+  alunos(filter: ModeltbJoinTurmasAlunosFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModeltbJoinTurmasAlunosConnection
+  aulas(filter: ModeltbAulasFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModeltbAulasConnection
+  createdAt: AWSDateTime!
+  descricao: String
+  id: ID!
+  nome: String!
+  periodo: String!
+  professor: tbUsuarios
+  professorEmail: String!
+  turma_ativa: Boolean
+  updatedAt: AWSDateTime!
+}
+
+type tbUsuarios @aws_cognito_user_pools @aws_iam {
+  cadastro_realizado: Boolean
+  cargo: TbUsuariosCargo
+  conta_ativa: Boolean
+  createdAt: AWSDateTime!
+  email: String!
+  nome: String
+  owner: String
+  presencas(filter: ModeltbPresencaFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModeltbPresencaConnection
+  turmasComoAluno(filter: ModeltbJoinTurmasAlunosFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModeltbJoinTurmasAlunosConnection
+  turmasComoProfessor(filter: ModeltbTurmasFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModeltbTurmasConnection
+  updatedAt: AWSDateTime!
+}
+
+enum ModelAttributeTypes {
+  _null
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+enum TbAulasStatus {
+  CANCELADA
+  REALIZADA
+  REMARCADA
+}
+
+enum TbPresencaStatusJustificativa {
+  APROVADA
+  PENDENTE
+  REJEITADA
+}
+
+enum TbPresencaTipo {
+  MANUAL
+  QR_CODE
+}
+
+enum TbUsuariosCargo {
+  ADMIN
+  ALUNO
+  PROFESSOR
+}
+
+input AmplifyAIConversationTurnErrorInput {
+  errorType: String!
+  message: String!
+}
+
+input CreateTbAulasInput {
+  conteudo: String
+  data: AWSDateTime!
+  id: ID
+  materialUrl: [AWSURL]
+  numeroAula: Int
+  qrcode: String
+  status: TbAulasStatus
+  turmaId: String!
+}
+
+input CreateTbJoinTurmasAlunosInput {
+  alunoEmail: String!
+  id: ID
+  turmaId: String!
+}
+
+input CreateTbPresencaInput {
+  alunoEmail: String!
+  aulaId: String!
+  id: ID
+  justificativa: String
+  presente: Boolean!
+  statusJustificativa: TbPresencaStatusJustificativa
+  tipo: TbPresencaTipo
+}
+
+input CreateTbTurmasInput {
+  descricao: String
+  id: ID
+  nome: String!
+  periodo: String!
+  professorEmail: String!
+  turma_ativa: Boolean
+}
+
+input CreateTbUsuariosInput {
+  cadastro_realizado: Boolean
+  cargo: TbUsuariosCargo
+  conta_ativa: Boolean
+  email: String!
+  nome: String
+}
+
+input DeleteTbAulasInput {
+  id: ID!
+}
+
+input DeleteTbJoinTurmasAlunosInput {
+  id: ID!
+}
+
+input DeleteTbPresencaInput {
+  id: ID!
+}
+
+input DeleteTbTurmasInput {
+  id: ID!
+}
+
+input DeleteTbUsuariosInput {
+  email: String!
+}
+
+input ModelBooleanInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelFloatInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Float]
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+}
+
+input ModelIDInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelSizeInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelStringInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionBooleanInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelSubscriptionFloatInput {
+  between: [Float]
+  eq: Float
+  ge: Float
+  gt: Float
+  in: [Float]
+  le: Float
+  lt: Float
+  ne: Float
+  notIn: [Float]
+}
+
+input ModelSubscriptionIDInput {
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  in: [ID]
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+  notIn: [ID]
+}
+
+input ModelSubscriptionIntInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  in: [Int]
+  le: Int
+  lt: Int
+  ne: Int
+  notIn: [Int]
+}
+
+input ModelSubscriptionStringInput {
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  in: [String]
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+  notIn: [String]
+}
+
+input ModelSubscriptionTbAulasFilterInput {
+  and: [ModelSubscriptionTbAulasFilterInput]
+  conteudo: ModelSubscriptionStringInput
+  createdAt: ModelSubscriptionStringInput
+  data: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  materialUrl: ModelSubscriptionStringInput
+  numeroAula: ModelSubscriptionIntInput
+  or: [ModelSubscriptionTbAulasFilterInput]
+  qrcode: ModelSubscriptionStringInput
+  status: ModelSubscriptionStringInput
+  turmaId: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionTbJoinTurmasAlunosFilterInput {
+  alunoEmail: ModelSubscriptionStringInput
+  and: [ModelSubscriptionTbJoinTurmasAlunosFilterInput]
+  createdAt: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  or: [ModelSubscriptionTbJoinTurmasAlunosFilterInput]
+  turmaId: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionTbPresencaFilterInput {
+  alunoEmail: ModelSubscriptionStringInput
+  and: [ModelSubscriptionTbPresencaFilterInput]
+  aulaId: ModelSubscriptionStringInput
+  createdAt: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  justificativa: ModelSubscriptionStringInput
+  or: [ModelSubscriptionTbPresencaFilterInput]
+  owner: ModelStringInput
+  presente: ModelSubscriptionBooleanInput
+  statusJustificativa: ModelSubscriptionStringInput
+  tipo: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionTbTurmasFilterInput {
+  and: [ModelSubscriptionTbTurmasFilterInput]
+  createdAt: ModelSubscriptionStringInput
+  descricao: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  nome: ModelSubscriptionStringInput
+  or: [ModelSubscriptionTbTurmasFilterInput]
+  periodo: ModelSubscriptionStringInput
+  professorEmail: ModelSubscriptionStringInput
+  turma_ativa: ModelSubscriptionBooleanInput
+  updatedAt: ModelSubscriptionStringInput
+}
+
+input ModelSubscriptionTbUsuariosFilterInput {
+  and: [ModelSubscriptionTbUsuariosFilterInput]
+  cadastro_realizado: ModelSubscriptionBooleanInput
+  cargo: ModelSubscriptionStringInput
+  conta_ativa: ModelSubscriptionBooleanInput
+  createdAt: ModelSubscriptionStringInput
+  email: ModelSubscriptionStringInput
+  id: ModelSubscriptionIDInput
+  nome: ModelSubscriptionStringInput
+  or: [ModelSubscriptionTbUsuariosFilterInput]
+  owner: ModelStringInput
+  updatedAt: ModelSubscriptionStringInput
+}
+
+input ModelTbAulasConditionInput {
+  and: [ModelTbAulasConditionInput]
+  conteudo: ModelStringInput
+  createdAt: ModelStringInput
+  data: ModelStringInput
+  materialUrl: ModelStringInput
+  not: ModelTbAulasConditionInput
+  numeroAula: ModelIntInput
+  or: [ModelTbAulasConditionInput]
+  qrcode: ModelStringInput
+  status: ModelTbAulasStatusInput
+  turmaId: ModelStringInput
+  updatedAt: ModelStringInput
+}
+
+input ModelTbAulasFilterInput {
+  and: [ModelTbAulasFilterInput]
+  conteudo: ModelStringInput
+  createdAt: ModelStringInput
+  data: ModelStringInput
+  id: ModelIDInput
+  materialUrl: ModelStringInput
+  not: ModelTbAulasFilterInput
+  numeroAula: ModelIntInput
+  or: [ModelTbAulasFilterInput]
+  qrcode: ModelStringInput
+  status: ModelTbAulasStatusInput
+  turmaId: ModelStringInput
+  updatedAt: ModelStringInput
+}
+
+input ModelTbAulasStatusInput {
+  eq: TbAulasStatus
+  ne: TbAulasStatus
+}
+
+input ModelTbJoinTurmasAlunosConditionInput {
+  alunoEmail: ModelStringInput
+  and: [ModelTbJoinTurmasAlunosConditionInput]
+  createdAt: ModelStringInput
+  not: ModelTbJoinTurmasAlunosConditionInput
+  or: [ModelTbJoinTurmasAlunosConditionInput]
+  turmaId: ModelStringInput
+  updatedAt: ModelStringInput
+}
+
+input ModelTbJoinTurmasAlunosFilterInput {
+  alunoEmail: ModelStringInput
+  and: [ModelTbJoinTurmasAlunosFilterInput]
+  createdAt: ModelStringInput
+  id: ModelIDInput
+  not: ModelTbJoinTurmasAlunosFilterInput
+  or: [ModelTbJoinTurmasAlunosFilterInput]
+  turmaId: ModelStringInput
+  updatedAt: ModelStringInput
+}
+
+input ModelTbPresencaConditionInput {
+  alunoEmail: ModelStringInput
+  and: [ModelTbPresencaConditionInput]
+  aulaId: ModelStringInput
+  createdAt: ModelStringInput
+  justificativa: ModelStringInput
+  not: ModelTbPresencaConditionInput
+  or: [ModelTbPresencaConditionInput]
+  owner: ModelStringInput
+  presente: ModelBooleanInput
+  statusJustificativa: ModelTbPresencaStatusJustificativaInput
+  tipo: ModelTbPresencaTipoInput
+  updatedAt: ModelStringInput
+}
+
+input ModelTbPresencaFilterInput {
+  alunoEmail: ModelStringInput
+  and: [ModelTbPresencaFilterInput]
+  aulaId: ModelStringInput
+  createdAt: ModelStringInput
+  id: ModelIDInput
+  justificativa: ModelStringInput
+  not: ModelTbPresencaFilterInput
+  or: [ModelTbPresencaFilterInput]
+  owner: ModelStringInput
+  presente: ModelBooleanInput
+  statusJustificativa: ModelTbPresencaStatusJustificativaInput
+  tipo: ModelTbPresencaTipoInput
+  updatedAt: ModelStringInput
+}
+
+input ModelTbPresencaStatusJustificativaInput {
+  eq: TbPresencaStatusJustificativa
+  ne: TbPresencaStatusJustificativa
+}
+
+input ModelTbPresencaTipoInput {
+  eq: TbPresencaTipo
+  ne: TbPresencaTipo
+}
+
+input ModelTbTurmasConditionInput {
+  and: [ModelTbTurmasConditionInput]
+  createdAt: ModelStringInput
+  descricao: ModelStringInput
+  nome: ModelStringInput
+  not: ModelTbTurmasConditionInput
+  or: [ModelTbTurmasConditionInput]
+  periodo: ModelStringInput
+  professorEmail: ModelStringInput
+  turma_ativa: ModelBooleanInput
+  updatedAt: ModelStringInput
+}
+
+input ModelTbTurmasFilterInput {
+  and: [ModelTbTurmasFilterInput]
+  createdAt: ModelStringInput
+  descricao: ModelStringInput
+  id: ModelIDInput
+  nome: ModelStringInput
+  not: ModelTbTurmasFilterInput
+  or: [ModelTbTurmasFilterInput]
+  periodo: ModelStringInput
+  professorEmail: ModelStringInput
+  turma_ativa: ModelBooleanInput
+  updatedAt: ModelStringInput
+}
+
+input ModelTbUsuariosCargoInput {
+  eq: TbUsuariosCargo
+  ne: TbUsuariosCargo
+}
+
+input ModelTbUsuariosConditionInput {
+  and: [ModelTbUsuariosConditionInput]
+  cadastro_realizado: ModelBooleanInput
+  cargo: ModelTbUsuariosCargoInput
+  conta_ativa: ModelBooleanInput
+  createdAt: ModelStringInput
+  email: ModelStringInput
+  nome: ModelStringInput
+  not: ModelTbUsuariosConditionInput
+  or: [ModelTbUsuariosConditionInput]
+  owner: ModelStringInput
+  updatedAt: ModelStringInput
+}
+
+input ModelTbUsuariosFilterInput {
+  and: [ModelTbUsuariosFilterInput]
+  cadastro_realizado: ModelBooleanInput
+  cargo: ModelTbUsuariosCargoInput
+  conta_ativa: ModelBooleanInput
+  createdAt: ModelStringInput
+  email: ModelStringInput
+  id: ModelIDInput
+  nome: ModelStringInput
+  not: ModelTbUsuariosFilterInput
+  or: [ModelTbUsuariosFilterInput]
+  owner: ModelStringInput
+  updatedAt: ModelStringInput
+}
+
+input ModeltbAulasFilterInput {
+  and: [ModeltbAulasFilterInput]
+  conteudo: ModelStringInput
+  data: ModelStringInput
+  id: ModelIDInput
+  materialUrl: ModelStringInput
+  not: ModeltbAulasFilterInput
+  numeroAula: ModelIntInput
+  or: [ModeltbAulasFilterInput]
+  qrcode: ModelStringInput
+  status: ModelTbAulasStatusInput
+  turmaId: ModelStringInput
+}
+
+input ModeltbJoinTurmasAlunosFilterInput {
+  alunoEmail: ModelStringInput
+  and: [ModeltbJoinTurmasAlunosFilterInput]
+  id: ModelIDInput
+  not: ModeltbJoinTurmasAlunosFilterInput
+  or: [ModeltbJoinTurmasAlunosFilterInput]
+  turmaId: ModelStringInput
+}
+
+input ModeltbPresencaFilterInput {
+  alunoEmail: ModelStringInput
+  and: [ModeltbPresencaFilterInput]
+  aulaId: ModelStringInput
+  id: ModelIDInput
+  justificativa: ModelStringInput
+  not: ModeltbPresencaFilterInput
+  or: [ModeltbPresencaFilterInput]
+  presente: ModelBooleanInput
+  statusJustificativa: ModelTbPresencaStatusJustificativaInput
+  tipo: ModelTbPresencaTipoInput
+}
+
+input ModeltbTurmasFilterInput {
+  and: [ModeltbTurmasFilterInput]
+  descricao: ModelStringInput
+  id: ModelIDInput
+  nome: ModelStringInput
+  not: ModeltbTurmasFilterInput
+  or: [ModeltbTurmasFilterInput]
+  periodo: ModelStringInput
+  professorEmail: ModelStringInput
+  turma_ativa: ModelBooleanInput
+}
+
+input UpdateTbAulasInput {
+  conteudo: String
+  data: AWSDateTime
+  id: ID!
+  materialUrl: [AWSURL]
+  numeroAula: Int
+  qrcode: String
+  status: TbAulasStatus
+  turmaId: String
+}
+
+input UpdateTbJoinTurmasAlunosInput {
+  alunoEmail: String
+  id: ID!
+  turmaId: String
+}
+
+input UpdateTbPresencaInput {
+  alunoEmail: String
+  aulaId: String
+  id: ID!
+  justificativa: String
+  presente: Boolean
+  statusJustificativa: TbPresencaStatusJustificativa
+  tipo: TbPresencaTipo
+}
+
+input UpdateTbTurmasInput {
+  descricao: String
+  id: ID!
+  nome: String
+  periodo: String
+  professorEmail: String
+  turma_ativa: Boolean
+}
+
+input UpdateTbUsuariosInput {
+  cadastro_realizado: Boolean
+  cargo: TbUsuariosCargo
+  conta_ativa: Boolean
+  email: String!
+  nome: String
+}
