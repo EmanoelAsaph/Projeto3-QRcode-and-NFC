@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.apollo)
 }
 
 android {
@@ -65,5 +66,22 @@ dependencies {
     implementation(libs.androidx.navigation.compose) // A dependência de navegação
     implementation("androidx.compose.material:material-icons-extended-android:1.6.6")
 
+    // AWS Amplify
+    implementation(libs.amplify.core)
+    implementation(libs.amplify.aws.auth.cognito)
+    implementation(libs.amplify.aws.api)
 
+    // Apollo GraphQL
+    implementation(libs.apollo.runtime)
+    implementation(libs.apollo.api)
+}
+
+apollo {
+    service("ruralcheck") {
+        packageName.set("com.example.programachamada.graphql")
+        schemaFile.set(file("../schema.graphql"))
+        outputDirConnection {
+            connectToKotlinSourceSet("main")
+        }
+    }
 }

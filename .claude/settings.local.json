@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree /F \"C:\\Users\\ITEMM\\Desktop\\Repositórios\\Projeto3-QRcode-and-NFC\\ProgramaChamada\" /A)",
+      "Bash(./gradlew:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

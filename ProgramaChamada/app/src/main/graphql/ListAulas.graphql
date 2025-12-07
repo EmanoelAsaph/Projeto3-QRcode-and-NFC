@@ -1,0 +1,21 @@
+query ListAulas($filter: ModelTbAulasFilterInput, $limit: Int) {
+  listTbAulas(filter: $filter, limit: $limit) {
+    items {
+      id
+      numeroAula
+      conteudo
+      data
+      qrcode
+      status
+      turmaId
+      materialUrl
+      createdAt
+      updatedAt
+      turma {
+        nome
+        professorEmail
+      }
+    }
+    nextToken
+  }
+}

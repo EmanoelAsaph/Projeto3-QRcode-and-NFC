@@ -1,0 +1,19 @@
+query ListTurmas($filter: ModelTbTurmasFilterInput, $limit: Int, $nextToken: String) {
+  listTbTurmas(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      nome
+      descricao
+      periodo
+      professorEmail
+      turma_ativa
+      createdAt
+      updatedAt
+      professor {
+        email
+        nome
+      }
+    }
+    nextToken
+  }
+}

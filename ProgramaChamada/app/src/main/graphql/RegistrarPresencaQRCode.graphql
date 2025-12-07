@@ -1,0 +1,21 @@
+mutation RegistrarPresencaQRCode($qrcode: String!) {
+  registrarPresencaQRCode(qrcode: $qrcode) {
+    id
+    alunoEmail
+    aulaId
+    presente
+    tipo
+    createdAt
+    aluno {
+      nome
+      email
+    }
+    aula {
+      numeroAula
+      data
+      turma {
+        nome
+      }
+    }
+  }
+}
